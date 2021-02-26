@@ -24,3 +24,4 @@ dependencies:
   - dash-html-components=1.1.1=pyh9f0ad1d_0
   - dash-renderer=1.8.3=pyhd8ed1ab_0
   - dash-table=4.11.1=pyhd8ed1ab_0
+  - gunicorn=20.0.4=py37h89c1867_3
