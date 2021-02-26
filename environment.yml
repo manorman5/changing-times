@@ -1,0 +1,26 @@
+
+
+name: base
+channels:
+  - conda-forge
+dependencies:
+  - pandas=1.0.0=py37hb3f55d8_0
+  - xarray=0.16.0=py_0
+  - dask=2020.12.0=pyhd8ed1ab_0
+  - numba=0.46.0=py37hb3f55d8_1
+  - pip=19.3.1=py37_0
+  - bottleneck=1.3.1=py37hc1659b7_0
+  - cartopy=0.17.0=py37h423102d_1009
+  - fastparquet=0.3.2=py37hc1659b7_0
+  - python-snappy=0.5.4=py37hee44bf9_1
+  - pytest=5.3.1=py37_0
+  - pytest-cov=2.8.1=py_0
+  - pytest-runner=5.2=py_0
+  - black=19.10b0=py37_0
+  - plotly=4.14.1=pyhd3deb0d_0 
+  - dash-bootstrap-components=0.11.1=pyhd3deb0d_0
+  - dash=1.18.1=pyhd8ed1ab_0
+  - dash-core-components=1.14.1=pyhd8ed1ab_0
+  - dash-html-components=1.1.1=pyh9f0ad1d_0
+  - dash-renderer=1.8.3=pyhd8ed1ab_0
+  - dash-table=4.11.1=pyhd8ed1ab_0
