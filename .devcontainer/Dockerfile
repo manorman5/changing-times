@@ -21,3 +21,9 @@ RUN conda config --add channels conda-forge/label/dev && \
   conda update -n base conda && \
   conda env update -f /opt/conda/specs/environment.yml && \
   conda clean --all -f
+
+
+# download heroku for launching app on the great wide web
+
+RUN curl https://cli-assets.heroku.com/install.sh | sh
+
