@@ -1,8 +1,17 @@
 """
-Set style constants so they are referencable from anywhere
+Constants referencable from anywhere in app
 """
 
 import plotly
+import os 
+
+APP_ROOT = os.path.dirname(os.path.realpath(__file__))
+
+with open(APP_ROOT + "assets/datafile.json") as f:
+    DATAFILES_CONFIG = json.load(f)
+
+with open(APP_ROOT + "assets/settings.json") as f:
+    SETTINGS = json.load(f)
 
 FIG_LAYOUT_DEFAULTS = dict(
     plot_bgcolor="#F9F9F9",

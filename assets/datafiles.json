@@ -1,0 +1,29 @@
+{
+    "type": [
+        "finish_distribution",
+        "finish_timeseries",
+        "age_distribution",
+        "age_timeseries",
+        "proportion_timeseries",
+        "runnerfreq_timeseries"
+    ],
+    "contents": [
+        "event_specific",
+        ""
+    ],
+    "modifier":[
+        "demeaned",
+        ""
+    ],
+    "race_group":[
+        "testages",
+        ""
+    ],
+    "speed":[
+        "notfast",
+        "fast",
+        "notslow",
+        "slow",
+        ""
+    ]
+}
