@@ -112,3 +112,12 @@ def create_timeseries_by_gender(
         title= gender + " Runners",
         **kwargs
     )
+
+def create_timeseries_by_ability(
+    ability, df_dict, title, **kwargs
+):
+    return create_scatter_with_trend(
+        df = df_dict[ability],
+        title= ability.title() + " " + title,
+        **kwargs
+    )

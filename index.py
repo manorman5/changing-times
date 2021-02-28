@@ -4,7 +4,7 @@ import tabs.data as data
 import tabs.age as age
 import tabs.fast as fast
 import tabs.intro as intro
-# import tabs.slow as slow
+import tabs.slow as slow
 
 import constants
 import utils.utils as utils
@@ -25,7 +25,7 @@ app.layout = html.Div(
                 intro.Layout().get(),
                 age.Layout().get(),
                 fast.Layout().get(),
-                # slow.Layout().get(),
+                slow.Layout().get(),
                 data.layout(
                     yearmin=constants.SETTINGS["year_range"][0], 
                     yearmax=constants.SETTINGS["year_range"][1]
@@ -36,63 +36,66 @@ app.layout = html.Div(
 )
 
 
-# @app.callback(
-#     [
-#         Output('slow-whole-time-dist','figure'),
-#         Output('slow-whole-time-timeseries','figure'),
-#         Output('slow-proportion-by-race-timeseries','figure'),
-#         Output('slow-number-slow-timeseries','figure')
-#     ],
-#     [
-#         Input('slow-whole-time-gender-selector',"value"), 
-#         Input("slow-whole-time-race-dropdown","value"), 
-#         Input('slow-proportion-by-race-gender-selector',"value"), 
-#         Input("slow-proportion-by-race-race-dropdown","value"), 
-#         Input('slow-number-slow-gender-selector',"value"), 
-#         Input("slow-number-slow-race-dropdown","value"), 
-#     ]
-# )
-# def update_slow(gender, race, gender_prop, race_prop, gender_freq, race_freq):
-#     prop_timeseries = age.create_fig(
-#         slow.proportions_subset,
-#         race_prop,
-#         gender_prop,
-#         fast.create_timeseries,
-#         yvar = "prop_demeaned",
-#         yrange = [-200,200],
-#         ytitle = "Demeaned % Difference",
-#     )
-#     freq_timeseries = age.create_fig(
-#         slow.number_slow,
-#         race_freq,
-#         gender_freq,
-#         fast.create_timeseries,
-#         yvar = "freq",
-#         yrange = [
-#             0,
-#             slow.number_slow[(slow.number_slow.event_name == race_freq)].freq.max()
-#         ],
-#         ytitle = 'Number of "slow" Runners',
-#     )
+@app.callback(
+    [
+        Output('slow-whole-time-dist','figure'),
+        Output('slow-whole-time-timeseries','figure'),
+        Output('slow-proportion-by-race-timeseries','figure'),
+        Output('slow-number-slow-timeseries','figure')
+    ],
+    [
+        Input('slow-whole-time-gender-selector',"value"), 
+        Input("slow-whole-time-race-dropdown","value"), 
+        Input('slow-proportion-by-race-gender-selector',"value"), 
+        Input("slow-proportion-by-race-race-dropdown","value"), 
+        Input('slow-number-slow-gender-selector',"value"), 
+        Input("slow-number-slow-race-dropdown","value"), 
+    ]
+)
+def update_slow(gender, race, gender_prop, race_prop, gender_freq, race_freq):
+    prop_timeseries = utils.create_fig_by_gender_and_by_race(
+        slow.proportion_timeseries_testages_slow,
+        race_prop,
+        gender_prop,
+        timeseries.create_scatter_with_trend,
+        yvar = "proportion_demeaned",
+        yrange = [-200,200],
+        ytitle = "Demeaned % Difference"
+    )
+    freq_timeseries = utils.create_fig_by_gender_and_by_race(
+        slow.runnerfreq_timeseries_testages_slow,
+        race_freq,
+        gender_freq,
+        timeseries.create_scatter_with_trend,
+        yvar = "freq",
+        yrange = [
+            0,
+            slow.runnerfreq_timeseries_testages_slow[
+                (slow.runnerfreq_timeseries_testages_slow.event_name == race_freq)
+            ].freq.max()
+        ],
+        ytitle = 'Number of "slow" Runners'
+    )
     
-#     time_dist = age.create_fig(
-#         slow.time_dist,
-#         race, 
-#         gender,
-#         age.create_distribution,
-#         xrange=[4,6.5],
-#         yrange=[0,1]
-#     )
-#     time_timeseries = age.create_fig(
-#         slow.time_mean,
-#         race, 
-#         gender,
-#         age.create_timeseries,
-#         yvar="finish_time",
-#         yrange=[4.5*60,6.5*60],
-#         ytitle="Mean Finish Time (min)"
-#     )
-#     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
+    time_dist = utils.create_fig_by_gender_and_by_race(
+        slow.finish_distribution_testages_slow,
+        race, 
+        gender,
+        distribution.create_distribution_timeseries,
+        xrange=[4,6.5],
+        yrange=[0,1]
+    )
+    time_timeseries = utils.create_fig_by_gender_and_by_race(
+        slow.finish_timeseries_testages_slow,
+        race, 
+        gender,
+        timeseries.create_scatter_with_trend,
+        yvar="meantime",
+        yrange=[4.5*60,6.5*60],
+        ytitle="Mean Finish Time (min)",
+        height=230
+    )
+    return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
 @app.callback(
     [
@@ -149,7 +152,8 @@ def update_fast(gender, race, gender_prop, race_prop, gender_freq, race_freq):
         timeseries.create_scatter_with_trend,
         yvar="meantime",
         yrange=[2.25*60,3.25*60],
-        ytitle="Mean Finish Time (min)"
+        ytitle="Mean Finish Time (min)",
+        height=230
     )
     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
