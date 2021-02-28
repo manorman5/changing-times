@@ -1,5 +1,5 @@
 from app import app
-# import tabs.by_geography as by_geography
+import tabs.data as data
 # import tabs.age as age
 # import tabs.fast as fast
 import tabs.intro as intro
@@ -21,10 +21,10 @@ app.layout = html.Div(
                 # age.Layout().get(),
                 # fast.Layout().get(),
                 # slow.Layout().get(),
-                # by_geography.layout(
-                #     yearmin=constants.YEAR_RANGE[0], 
-                #     yearmax=constants.YEAR_RANGE[1]
-                # )
+                data.layout(
+                    yearmin=constants.SETTINGS["year_range"][0], 
+                    yearmax=constants.SETTINGS["year_range"][1]
+                )
             ]
         )
     ]
@@ -197,24 +197,24 @@ app.layout = html.Div(
 #     )
 #     return age_dist, age_timeseries, time_dist, time_timeseries
 
-# @app.callback(
-#     [
-#         Output('map','figure'),
-#         Output("geo-sunburst",'figure')
-#     ],
-#     [
-#         Input("by-geo-year-dropdown","value"), 
-#         Input("by-geo-gender-selector","value"), 
-#     ]
-# )
-# def update_by_geography(years, genders):
-#     power = (3.5/12) 
-#     years = [yr for yr in range(years[0], years[1]+1)]
-#     plot_dt = by_geography.filter_data(years, genders)
-#     plot_dt["freq_norm"] = plot_dt.freq**(power)
-#     fig_map = by_geography.create_map(plot_dt)
-#     fig_sunburst = by_geography.create_geo_sunburst(plot_dt)
-#     return fig_map, fig_sunburst
+@app.callback(
+    [
+        Output('map','figure'),
+        Output("geo-sunburst",'figure')
+    ],
+    [
+        Input("by-geo-year-dropdown","value"), 
+        Input("by-geo-gender-selector","value"), 
+    ]
+)
+def update_data(years, genders):
+    power = (3.5/12) 
+    years = [yr for yr in range(years[0], years[1]+1)]
+    plot_dt = data.filter_data(years, genders)
+    plot_dt["freq_norm"] = plot_dt.freq**(power)
+    fig_map = data.create_map(plot_dt)
+    fig_sunburst = data.create_geo_sunburst(plot_dt)
+    return fig_map, fig_sunburst
 
 
 if __name__ == '__main__':

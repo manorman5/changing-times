@@ -5,7 +5,8 @@
         "age_distribution",
         "age_timeseries",
         "proportion_timeseries",
-        "runnerfreq_timeseries"
+        "runnerfreq_timeseries",
+        "geographic_distribution"
     ],
     "contents": [
         "event_specific",
