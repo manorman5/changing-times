@@ -33,39 +33,6 @@ time for a given race in a given year minus the mean finish time for a given rac
 demeaned mean finish times.
 """
 
-def create_timeseries(
-    list_elem, **kwargs
-):
-    def gen_fig_data(dt, **kwargs):
-        trendline = timeseries.fig_trendline_data(
-            dt, 
-            yvar="meantime_demeaned", 
-            color=constants.GENDER_COLORS[list_elem]
-        )
-        scatter = timeseries.fig_scatter_data(
-            dt, 
-            yvar="meantime_demeaned", 
-            color=constants.GENDER_COLORS[list_elem], 
-            name="", 
-            mode="markers", 
-            marker_opacity=0.5, 
-            text=dt.event_name,
-            hoverinfo = "text",
-            **kwargs
-        )
-        return [scatter, trendline]
-    
-    fig = timeseries.create(
-        finish_timeseries[finish_timeseries.gender == list_elem[0]].copy(), 
-        gen_fig_data, 
-        yrange=[-2*60,2*60], 
-        ytitle='Demeaned Mean Finish Time (min)',
-        title= list_elem + " Runners",
-        **kwargs
-    )
-    fig.update_layout(showlegend=False)
-    return fig
-
 class Layout(layout.Layout):
     def get(self):
         return dcc.Tab(
@@ -76,7 +43,11 @@ class Layout(layout.Layout):
                     "intro", 
                     "finish-timeseries", 
                     ["Female","Male"],
-                    create_timeseries
-                ),
+                    timeseries.create_timeseries_by_gender,
+                    df = finish_timeseries,
+                    yrange=[-2*60,2*60], 
+                    ytitle='Demeaned Mean Finish Time (min)',
+                    yvar="meantime_demeaned"
+                )
             ]
         )

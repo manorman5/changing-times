@@ -1,10 +1,15 @@
 from app import app
+
 import tabs.data as data
-# import tabs.age as age
+import tabs.age as age
 # import tabs.fast as fast
 import tabs.intro as intro
 # import tabs.slow as slow
+
 import constants
+import utils.utils as utils
+import utils.timeseries as timeseries
+import utils.distribution as distribution
 
 import dash
 import dash_core_components as dcc
@@ -18,7 +23,7 @@ app.layout = html.Div(
             id = "tabs",
             children=[
                 intro.Layout().get(),
-                # age.Layout().get(),
+                age.Layout().get(),
                 # fast.Layout().get(),
                 # slow.Layout().get(),
                 data.layout(
@@ -148,54 +153,56 @@ app.layout = html.Div(
 
 
 
-# @app.callback(
-#     [
-#         Output('age-age-dist','figure'),
-#         Output('age-age-timeseries','figure'),
-#         Output('age-time-dist','figure'),
-#         Output('age-time-timeseries','figure')
-#     ],
-#     [
-#         Input('age-age-gender-selector',"value"), 
-#         Input("age-age-race-dropdown","value"), 
-#         Input('age-time-gender-selector',"value"), 
-#         Input("age-time-race-dropdown","value"), 
-#     ]
-# )
-# def update_age(age_gender, age_race, time_gender, time_race):
-#     age_dist = age.create_fig(
-#         age.age_dist,
-#         age_race, 
-#         age_gender,
-#         age.create_distribution,
-#         xrange = [15,86],
-#         xtitle="Age"
-#     )
-#     age_timeseries = age.create_fig(
-#         age.age_mean,
-#         age_race, 
-#         age_gender,
-#         age.create_timeseries,
-#         yvar="average_age",
-#         ytitle="Mean Runner Age",
-#         yrange=[30,55]
-#     )
-#     time_dist = age.create_fig(
-#         age.time_dist,
-#         time_race, 
-#         time_gender,
-#         age.create_distribution
-#     )
-#     time_timeseries = age.create_fig(
-#         age.time_mean,
-#         time_race, 
-#         time_gender,
-#         age.create_timeseries,
-#         yvar="finish_time",
-#         yrange=[3*60,5.5*60],
-#         ytitle="Mean Finish Time (min)"
-#     )
-#     return age_dist, age_timeseries, time_dist, time_timeseries
+@app.callback(
+    [
+        Output('age-age-dist','figure'),
+        Output('age-age-timeseries','figure'),
+        Output('age-time-dist','figure'),
+        Output('age-time-timeseries','figure')
+    ],
+    [
+        Input('age-age-gender-selector',"value"), 
+        Input("age-age-race-dropdown","value"), 
+        Input('age-time-gender-selector',"value"), 
+        Input("age-time-race-dropdown","value"), 
+    ]
+)
+def update_age(age_gender, age_race, time_gender, time_race):
+    age_dist = utils.create_fig_by_gender_and_by_race(
+        age.age_distribution,
+        age_race, 
+        age_gender,
+        distribution.create_distribution_timeseries,
+        xrange = [15,86],
+        xtitle="Age"
+    )
+    age_timeseries = utils.create_fig_by_gender_and_by_race(
+        age.age_timeseries,
+        age_race, 
+        age_gender,
+        timeseries.create_scatter_with_trend,
+        yvar="average_age",
+        ytitle="Mean Runner Age",
+        yrange=[30,55],
+        height=230
+    )
+    time_dist = utils.create_fig_by_gender_and_by_race(
+        age.finish_distribution_testages,
+        time_race, 
+        time_gender,
+        distribution.create_distribution_timeseries
+    )
+    time_timeseries = utils.create_fig_by_gender_and_by_race(
+        age.finish_timeseries_testages,
+        time_race, 
+        time_gender,
+        timeseries.create_scatter_with_trend,
+        yvar="meantime",
+        yrange=[3*60,5.5*60],
+        ytitle="Mean Finish Time (min)",
+        height=230
+    )
+    return age_dist, age_timeseries, time_dist, time_timeseries
 
 @app.callback(
     [

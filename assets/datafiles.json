@@ -1,6 +1,6 @@
 {
     "type": [
-        "finish_distribution",
+        "finishtime_distribution",
         "finish_timeseries",
         "age_distribution",
         "age_timeseries",

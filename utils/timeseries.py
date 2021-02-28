@@ -79,3 +79,36 @@ def create(
         **kwargs
     )
     return fig
+
+def create_scatter_with_trend(df, color, yvar, **kwargs):
+    def gen_fig_data(df):
+        scatter = fig_scatter_data(
+            df,
+            yvar=yvar,
+            color=color,
+            name="",
+            mode="markers"
+        )
+        trendline = fig_trendline_data(
+            df,
+            yvar=yvar,
+            color=color
+        )
+        return [scatter, trendline]
+    fig = create(
+        df,
+        gen_fig_data,
+        **kwargs
+    )
+    fig.update_traces(showlegend=False)
+    return fig
+
+def create_timeseries_by_gender(
+    gender, df, **kwargs
+):
+    return create_scatter_with_trend(
+        df = df[df.gender == gender[0]].copy(),
+        color = constants.GENDER_COLORS[gender],
+        title= gender + " Runners",
+        **kwargs
+    )

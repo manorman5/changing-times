@@ -14,7 +14,7 @@ class Layout:
                         dcc.Graph(
                             id=f'{ptag}-{gg}-{gtag}',
                             figure=figurefunc(
-                                list_elem = gg,
+                                gg,
                                 **kwargs
                             )
                         )
@@ -60,7 +60,7 @@ class Layout:
                 ),
             ]
         )
-    def row_dist_timeseries(self, ptag, gtag):
+    def row_dist_timeseries(self, ptag, gtag, eventnames):
         return html.Div(
             className="row", 
             children=[
@@ -87,10 +87,10 @@ class Layout:
                         html.P("Select a race", className="control_label"),
                         dcc.Dropdown(
                             id=f"{ptag}-{gtag}-race-dropdown",
-                            value=time_dist.event_name.drop_duplicates().values[0],
+                            value=eventnames[0],
                             options=[
                                 {"value":event_name, "label":event_name}
-                                for event_name in time_dist.event_name.drop_duplicates().values
+                                for event_name in eventnames
                             ]
                         )
                     ]
