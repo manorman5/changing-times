@@ -25,3 +25,4 @@ dependencies:
   - dash-renderer=1.8.3=pyhd8ed1ab_0
   - dash-table=4.11.1=pyhd8ed1ab_0
   - gunicorn=20.0.4=py37h89c1867_3
+  - statsmodels=0.12.1=py37ha21ca33_1

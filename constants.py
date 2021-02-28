@@ -4,13 +4,16 @@ Constants referencable from anywhere in app
 
 import plotly
 import os 
+import json
 
 APP_ROOT = os.path.dirname(os.path.realpath(__file__))
+DATA_DIR = APP_ROOT + "/data"
+LOCAL_DATA_DIR = "/data/marathon-data/int/marathon/changing_times" 
 
-with open(APP_ROOT + "assets/datafile.json") as f:
+with open(APP_ROOT + "/assets/datafiles.json") as f:
     DATAFILES_CONFIG = json.load(f)
 
-with open(APP_ROOT + "assets/settings.json") as f:
+with open(APP_ROOT + "/assets/settings.json") as f:
     SETTINGS = json.load(f)
 
 FIG_LAYOUT_DEFAULTS = dict(
