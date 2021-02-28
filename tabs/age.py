@@ -7,7 +7,7 @@ import pandas as pd
 
 import dash_core_components as dcc
 
-aging_intro = """
+intro = """
 ##### Is an aging marathon population causing the great slowing? 
 If so, we first need to confirm the marathon population is aging. I do so for a handful of marathons below.
 We can see for these marathons, both the female and male marathoner populations are aging. As you move from the
@@ -16,7 +16,7 @@ Additionally, the trendline in mean runner age has a positive slope indicating t
 has increased over the last 25 years. 
 """
 
-aging_analysis = """
+analysis = """
 ##### Are 25-35 year old marathoners slowing?
 Great, the marathoner population is aging... is that why the average marathoner is slower today than 25 years ago? Maybe... 
 maybe not. Hard telling not knowing. To partially test this question, let's see if 25-35 year old marathoners
@@ -82,13 +82,13 @@ class Layout(layout.Layout):
         return dcc.Tab(
             label="Aging marathoners?",
             children=[
-                self.row_description(aging_intro),
+                self.row_description(intro),
                 self.row_dist_timeseries(
                     "age",
                     "age", 
                     eventnames=age_distribution.event_name.drop_duplicates().values
                 ),
-                self.row_description(aging_analysis),
+                self.row_description(analysis),
                 self.row_dist_timeseries(
                     "age",
                     "time",

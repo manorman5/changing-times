@@ -5,7 +5,7 @@
         "age_distribution",
         "age_timeseries",
         "proportion_timeseries",
-        "runnerfreq_timeseries",
+        "runner_freq_timeseries",
         "geographic_distribution"
     ],
     "contents": [

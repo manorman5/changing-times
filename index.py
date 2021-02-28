@@ -2,7 +2,7 @@ from app import app
 
 import tabs.data as data
 import tabs.age as age
-# import tabs.fast as fast
+import tabs.fast as fast
 import tabs.intro as intro
 # import tabs.slow as slow
 
@@ -24,7 +24,7 @@ app.layout = html.Div(
             children=[
                 intro.Layout().get(),
                 age.Layout().get(),
-                # fast.Layout().get(),
+                fast.Layout().get(),
                 # slow.Layout().get(),
                 data.layout(
                     yearmin=constants.SETTINGS["year_range"][0], 
@@ -94,62 +94,64 @@ app.layout = html.Div(
 #     )
 #     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
-# @app.callback(
-#     [
-#         Output('fast-whole-time-dist','figure'),
-#         Output('fast-whole-time-timeseries','figure'),
-#         Output('fast-proportion-by-race-timeseries','figure'),
-#         Output('fast-number-fast-timeseries','figure')
-#     ],
-#     [
-#         Input('fast-whole-time-gender-selector',"value"), 
-#         Input("fast-whole-time-race-dropdown","value"), 
-#         Input('fast-proportion-by-race-gender-selector',"value"), 
-#         Input("fast-proportion-by-race-race-dropdown","value"), 
-#         Input('fast-number-fast-gender-selector',"value"), 
-#         Input("fast-number-fast-race-dropdown","value"), 
-#     ]
-# )
-# def update_fast(gender, race, gender_prop, race_prop, gender_freq, race_freq):
-#     prop_timeseries = age.create_fig(
-#         fast.proportions_subset,
-#         race_prop,
-#         gender_prop,
-#         fast.create_timeseries,
-#         yvar = "prop_demeaned",
-#         yrange = [-200,200],
-#         ytitle = "Demeaned % Difference",
-#     )
-#     freq_timeseries = age.create_fig(
-#         fast.number_fast,
-#         race_freq,
-#         gender_freq,
-#         fast.create_timeseries,
-#         yvar = "freq",
-#         yrange = [
-#             0,
-#             fast.number_fast[(fast.number_fast.event_name == race_freq)].freq.max()
-#         ],
-#         ytitle = 'Number of "strong" Amatuers',
-#     )
+@app.callback(
+    [
+        Output('fast-whole-time-dist','figure'),
+        Output('fast-whole-time-timeseries','figure'),
+        Output('fast-proportion-by-race-timeseries','figure'),
+        Output('fast-number-fast-timeseries','figure')
+    ],
+    [
+        Input('fast-whole-time-gender-selector',"value"), 
+        Input("fast-whole-time-race-dropdown","value"), 
+        Input('fast-proportion-by-race-gender-selector',"value"), 
+        Input("fast-proportion-by-race-race-dropdown","value"), 
+        Input('fast-number-fast-gender-selector',"value"), 
+        Input("fast-number-fast-race-dropdown","value"), 
+    ]
+)
+def update_fast(gender, race, gender_prop, race_prop, gender_freq, race_freq):
+    prop_timeseries = utils.create_fig_by_gender_and_by_race(
+        fast.proportion_timeseries_testages_fast,
+        race_prop,
+        gender_prop,
+        timeseries.create_scatter_with_trend,
+        yvar = "proportion_demeaned",
+        yrange = [-200,200],
+        ytitle = "Demeaned % Difference"
+    )
+    freq_timeseries = utils.create_fig_by_gender_and_by_race(
+        fast.runnerfreq_timeseries_testages_fast,
+        race_freq,
+        gender_freq,
+        timeseries.create_scatter_with_trend,
+        yvar = "freq",
+        yrange = [
+            0,
+            fast.runnerfreq_timeseries_testages_fast[
+                (fast.runnerfreq_timeseries_testages_fast.event_name == race_freq)
+            ].freq.max()
+        ],
+        ytitle = 'Number of "strong" Amatuers',
+    )
     
-#     time_dist = age.create_fig(
-#         fast.time_dist,
-#         race, 
-#         gender,
-#         age.create_distribution,
-#         xrange=[2.45,3.1]
-#     )
-#     time_timeseries = age.create_fig(
-#         fast.time_mean,
-#         race, 
-#         gender,
-#         age.create_timeseries,
-#         yvar="finish_time",
-#         yrange=[2.25*60,3.25*60],
-#         ytitle="Mean Finish Time (min)"
-#     )
-#     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
+    time_dist = utils.create_fig_by_gender_and_by_race(
+        fast.finish_distribution_testages_fast,
+        race, 
+        gender,
+        distribution.create_distribution_timeseries,
+        xrange=[2.45,3.1]
+    )
+    time_timeseries = utils.create_fig_by_gender_and_by_race(
+        fast.finish_timeseries_testages_fast,
+        race, 
+        gender,
+        timeseries.create_scatter_with_trend,
+        yvar="meantime",
+        yrange=[2.25*60,3.25*60],
+        ytitle="Mean Finish Time (min)"
+    )
+    return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
 
 
