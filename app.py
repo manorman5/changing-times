@@ -15,9 +15,12 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc 
 
+import os
+
 
 app = dash.Dash(__name__, external_stylesheets = [])
 server = app.server
+port = int(os.environ.get("PORT", 5000))
 
 app.layout = html.Div(
     className='app-body', 
@@ -234,5 +237,5 @@ def update_data(years, genders):
 
 
 if __name__ == '__main__':
-    app.run_server(debug = True)
+    app.run_server(debug=False,host="0.0.0.0",port=port)
 
