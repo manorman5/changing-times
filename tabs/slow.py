@@ -188,7 +188,7 @@ class Layout(layout.Layout):
                 *[
                     self.row_side_by_side_graphs(
                         "slow", 
-                        f"finish-timeseries-testages-notfast-{gender}", 
+                        f"finish-timeseries-testages-{gender}", 
                         ["other","slow"],
                         timeseries.create_timeseries_by_ability,
                         df_dict = {

@@ -174,15 +174,27 @@ class Layout(layout.Layout):
                 ),
                 self.row_description(prop_analysis),
                 self.row_description(still_slowing),
-                self.row_side_by_side_graphs(
-                    "fast", 
-                    "finish-timeseries-testages-notfast", 
-                    ["Female","Male"],
-                    timeseries.create_timeseries_by_gender,
-                    df = finish_timeseries_testages_notfast,
-                    yrange=[-2*60,2*60], 
-                    ytitle='Demeaned Mean Finish Time (min)',
-                    yvar="meantime_demeaned"
-                )
+                *[
+                    self.row_side_by_side_graphs(
+                        "fast", 
+                        f"finish-timeseries-testages-{gender}", 
+                        ["other","fast"],
+                        timeseries.create_timeseries_by_ability,
+                        df_dict = {
+                            "other":finish_timeseries_testages_notfast[
+                                finish_timeseries_testages_notfast.gender == gender[0]
+                            ].copy(),
+                            "fast":finish_timeseries_testages_fast[
+                                finish_timeseries_testages_fast.gender == gender[0]
+                            ].copy()
+                        },
+                        title = gender + " Runners",
+                        color=constants.GENDER_COLORS[gender],
+                        yrange=[-2*60,2*60], 
+                        ytitle='Demeaned Mean Finish Time (min)',
+                        yvar="meantime_demeaned"
+                    )
+                    for gender in ["Female","Male"]
+                ]
             ]
         )
