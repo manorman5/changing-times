@@ -11,14 +11,14 @@ import numpy as np
 import pandas as pd
 
 intro = """
-##### Has an increasing number of "slow" marathoners caused the great slowing?
+### Has an increasing number of "slow" marathoners caused the great slowing?
 
 Over the past 25 years many marathon characteristics have changed. Marathons have grown 
 in popularity, meaning the number of marathoners has dramatically grown. With this increase
 in popularity, there has been an explosion of casual runners and the focus of runners has
 generally shifted from running to win to running to participate. With this context in mind, its
-easily imagineable that there are more "slow" runners relative to the number of racers 
-today compared to 25 years ago. Below we will confirm this hypothesis and investigate the role of these
+easily imagineable that there are more "slow" runners today compared to 25 years ago. 
+Below we will confirm this hypothesis and investigate the role of these
 finishers in the great slowing.
 
 For simplicity, we will continue to restrict our analysis to marathoners between
@@ -52,11 +52,11 @@ histogram bar contains 50 percent or more of the finishers. If we were to redesi
 this subinterval as faster than "slow" runners, the trends we see in average finish time and number
 of finishers for "slow" runners may change drastically. As with our analysis of the "strong"
 amatuers, this isn't a game I want to play -- dropping histogram bars to see how the trend changes. 
-Instead I want to change the approach. 
+Instead I want to use a different approach. 
 
 Really what we care about is how the number of finishers in one histogram bar relative to the previous has changed. If
 all bars have an increasing number of finishers across time relative to the previous, then we can imagine there 
-is an increasing number of "strong" amateur runners. Below, I conduct this analysis and find evidence 
+is an increasing number of "slow" runners. Below, I conduct this analysis and find evidence 
 that there is an increasing number of "slow" runners. The trendlines are positive, suggesting on average over
 the entire distribution of "slow" runners there is an increasing number of slower runners. These findings
 support the belief that there are more slower runners today than 25 years ago.
@@ -70,21 +70,12 @@ between 1995 and 2019 is subtracted from the percent difference in each year.
 """
 
 prop_analysis = """
-##### Are these results generalizable?
-
-Now let's ensure there is evidence for all races that there is an increasing
-number of "slow" runners. The trendlines below continue to support this conclusion. The slight 
-positive trend below between time and adjacent subinterval percent differences suggest that on
-average a races have seen an increasing number of "slow" runners. As above, each point represent the percent difference between
-the number of finishers in two adjacent subintervals (histogram bars) for a given race. Additionally, 
-each point is demeaned, meaning the average percent difference between the number of finisher in two adjacent
-subintervals between 1995 and 2019 for a given race is subtracted from the percent difference in each year.
+##### What do these findings mean?
 
 Given we find evidence to support the belief that there are more
-"slow" runners today than 25 years ago, it is possible that this increase
+"slow" runners today than 25 years ago for our sample races, it is possible that this increase
 in "slow" runners in the field is a driving cause of the great slowing. Below,
-I will highlight the slowing trend is much greater for the "slow" runners
-than for the other finishers.
+we further explore that hypothesis.
 """
 
 still_slowing = """
@@ -96,11 +87,11 @@ that an increase in slow runners is a driving cause of the great slowing of U.S.
 for the population of marathoners between 25 and 35 years.
 
 An interesting next step could be to find the interval of finishers who experience the greatest slowing
-over this time period. While my analysis finds "slow" runners to experience the greatest slowing over this
+over this time period. While my analysis finds "slow" runners experience the greatest slowing over this
 time period, I define fast and slow runners very arbitrarily throughout this analysis and do not check the
 robustness of my findings to these arbitrary definitions. Using statistical analysis instead of arbitrary definitions
 to find the interval of finishers who experience the greatest slowing could either support the findings here
-or demonstrate the perrils of arbitrary definitions in data analytics. Hard telling not knowing. 
+or demonstrate the perrils of arbitrary definitions in data analytics. Time will tell. 
 """
 
 prop_by_race_description = """
