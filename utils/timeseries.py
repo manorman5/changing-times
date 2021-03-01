@@ -35,12 +35,12 @@ def create(
         xanchor="right",
         x=0.99
     ),
-    figdt_kws={},
+    hovertext=False,
     **kwargs
 ):
     fig_dict = {
         "layout" : {},
-        "data" : datafunc(df, **figdt_kws)
+        "data" : datafunc(df, hovertext=hovertext)
     }
     fig_dict["layout"]["xaxis"] = {
         "title": "Year", 
@@ -81,13 +81,17 @@ def create(
     return fig
 
 def create_scatter_with_trend(df, color, yvar, **kwargs):
-    def gen_fig_data(df):
+    def gen_fig_data(df, hovertext=False, **kwargs):
+        if hovertext:
+            kwargs["text"] = df.event_name
+            kwargs["hoverinfo"] = "text"
         scatter = fig_scatter_data(
             df,
             yvar=yvar,
             color=color,
             name="",
-            mode="markers"
+            mode="markers",
+            **kwargs
         )
         trendline = fig_trendline_data(
             df,

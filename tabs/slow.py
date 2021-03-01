@@ -196,7 +196,8 @@ class Layout(layout.Layout):
                         color=constants.GENDER_COLORS[gender],
                         yrange=[-2*60,2*60], 
                         ytitle='Demeaned Mean Finish Time (min)',
-                        yvar="meantime_demeaned"
+                        yvar="meantime_demeaned",
+                        hovertext=True
                     )
                     for gender in ["Female","Male"]
                 ]
