@@ -107,7 +107,7 @@ class Layout(layout.Layout):
                     df = finish_timeseries_testages,
                     yrange=[-2*60,2*60], 
                     ytitle='Demeaned Mean Finish Time (min)',
-                    yvar="meantime_demeaned"
+                    yvar="meantime_demeaned",
                     hovertext=True,
                     marker_opacity=0.25
                 )
