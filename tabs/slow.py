@@ -1,3 +1,5 @@
+#TODO: hovertext on double double timeseries should be event names
+
 import utils.timeseries as timeseries
 import utils.utils as utils
 import utils.layout as layout
