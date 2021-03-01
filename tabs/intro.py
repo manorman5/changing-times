@@ -28,10 +28,9 @@ participate.
 * Marathoners today are on average older than marathoners 20 years ago. 
 * The increase in marathon popularity disproportionatley increased
 the number of slower marathoners. 
-After accumlating a rather extensive set of U.S. marathon results, I decided to run with these
-hypotheses and see what the data had to say. 
 
-To begin, let's confirm we aren't hunting a ghost and the slowing trend documented throughout 
+After accumlating a rather extensive set of U.S. marathon results, I decided to run with these
+hypotheses and see what the data had to say. To begin, let's confirm we aren't hunting a ghost and the slowing trend documented throughout 
 the internet exists in this dataset. The trendlines below highlight on average non-elite marathoners are slower today than they were 25 years ago.
 I define non-elite marathoners as marathoners that finish a marathon between 2.5 and 6.5 hours. Each point represents the demeaned mean 
 finish time for a given race in a given year. Where the demeaned mean finish time is the mean finish time for a given race in a given year minus the mean finish 
