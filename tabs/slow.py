@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 intro = """
-### Has an increasing number of "slow" marathoners caused the great slowing?
+##### Has an increasing number of "slow" marathoners caused the great slowing?
 
 Over the past 25 years many marathon characteristics have changed. Marathons have grown 
 in popularity, meaning the number of marathoners has dramatically grown. With this increase

@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 intro = """
-### Has a decreasing number of "strong" amateur runners caused the great slowing?
+##### Has a decreasing number of "strong" amateur runners caused the great slowing?
 
 Over the past 25 years many marathon characteristics have changed. Marathons have grown 
 in popularity, meaning the number of marathoners has dramatically grown. With this increase
@@ -43,7 +43,7 @@ the number of "strong" amatuers has increased.
 """
 
 fast_analysis = """
-### Are there really fewer "strong" amateurs?
+##### Are there really fewer "strong" amateurs?
 
 The obvious conclusion here is there is no obvious conclusion. For the Chicago Marathon,
 both "strong" male and female amateur runners marginally slowed over this time period. For Grandma's marathon,
@@ -73,7 +73,7 @@ between 1995 and 2019 is subtracted from the percent difference in each year.
 """
 
 prop_analysis = """
-### What do these results (or lack there of) mean?
+##### What do these results (or lack there of) mean?
 
 Given we do not find evidence to support the belief that there are fewer
 "strong" amatuers today than 25 years ago for our sample races, 
@@ -86,7 +86,7 @@ all runners we've defined as "strong" amatuers from the sample.
 """
 
 still_slowing = """
-### If we drop the "strong" amatuers is the average marathoner still slowing?
+##### If we drop the "strong" amatuers is the average marathoner still slowing?
 
 Both male and female sub "strong" amatuers have slowed over the past 25 years much more than "strong" amatuers; 
 other runers are defined as runners finishing between 3 and 6.5 hours. This finding does not support the hypothesis

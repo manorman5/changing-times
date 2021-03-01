@@ -18,7 +18,7 @@ finish_timeseries = pd.read_csv(constants.DATA_DIR + "/" + utils.get_filename(
 ))
 
 intro_description = """
-### The Trend and The Hypotheses
+##### The Trend and The Hypotheses
 As elite marathoners continue to break records, non-elite marathoners are slowing on average. The average female and male marathoner is 
 slower today than they were 25 years ago. Although this trend's cause is unknown, many running aficianados have floated hypotheses attempting to 
 explain this trend. There are fewer strong amateurs in the field. Generally marathoners' focus has shifted from running to win to running to

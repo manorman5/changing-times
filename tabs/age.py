@@ -8,7 +8,7 @@ import pandas as pd
 import dash_core_components as dcc
 
 intro = """
-### Is an aging marathon population causing the great slowing? 
+##### Is an aging marathon population causing the great slowing? 
 If so, we first need to confirm the marathon population is aging. I do so for a handful of marathons below.
 We can see for these marathons, both the female and male marathoner populations are aging. As you move from the
 past to the present, the marathoner age distribution moves to the right, indicating the population is aging. 
@@ -17,7 +17,7 @@ has increased over the last 25 years.
 """
 
 analysis = """
-### Are 25-35 year old marathoners slowing?
+##### Are 25-35 year old marathoners slowing?
 Great, the marathoner population is aging... is that why the average marathoner is slower today than 25 years ago? Maybe... 
 maybe not. Hard telling not knowing. To partially test this question, let's see if 25-35 year old marathoners
 today are slower on average than 25-35 year old marathoners 25 years ago. If the slowing trend holds for 25-35 year
@@ -28,7 +28,7 @@ time has a positive slope indicating the average marathoner has slowed.
 """
 
 generalizable_conclusions = """
-### Are these conclusions generalizable?
+##### Are these conclusions generalizable?
 
 Now, let's ensure our finding that the average 25-35 year old marathoner is slower today than 25 years ago applies to all races 
 in the dataset. The trendlines below highlight that the average 25-35 year old marathoner across all races has in fact slowed over the past 25 years.
