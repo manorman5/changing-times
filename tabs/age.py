@@ -108,6 +108,8 @@ class Layout(layout.Layout):
                     yrange=[-2*60,2*60], 
                     ytitle='Demeaned Mean Finish Time (min)',
                     yvar="meantime_demeaned"
+                    hovertext=True,
+                    marker_opacity=0.25
                 )
             ]
         )
