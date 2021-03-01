@@ -27,3 +27,5 @@ RUN conda config --add channels conda-forge/label/dev && \
 
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
+CMD ["python", "app.py"]
+

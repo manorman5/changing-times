@@ -19,11 +19,6 @@
 		"ms-python.python"
 	],
 
-	// Add mounts for storing data on the local machine
-	"mounts": [
-		"source=${localWorkspaceFolder}/../../data,target=/data,type=bind,consistency=cached"
-	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [3000,5000,8080,8888],
 
