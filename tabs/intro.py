@@ -21,7 +21,7 @@ intro_description = """
 ##### The Trend and The Hypotheses
 As elite marathoners continue to break records, non-elite marathoners are slowing. The average female and male marathoner is 
 slower today than they were 25 years ago. Although this trend's cause is unknown, many running aficianados have floated hypotheses attempting to 
-explain this trend. 
+explain this trend. Below are a few: 
 * There are fewer strong amateurs in the field. 
 * Generally marathoners' focus has shifted from running to win to running to
 participate. 
