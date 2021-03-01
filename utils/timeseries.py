@@ -36,11 +36,12 @@ def create(
         x=0.99
     ),
     hovertext=False,
+    marker_opacity=1,
     **kwargs
 ):
     fig_dict = {
         "layout" : {},
-        "data" : datafunc(df, hovertext=hovertext)
+        "data" : datafunc(df, hovertext=hovertext, marker_opacity=marker_opacity)
     }
     fig_dict["layout"]["xaxis"] = {
         "title": "Year", 
