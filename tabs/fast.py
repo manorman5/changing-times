@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 intro = """
-##### Has a decreasing number of strong amateur runners caused the great slowing?
+### Has a decreasing number of "strong" amateur runners caused the great slowing?
 
 Over the past 25 years many marathon characteristics have changed. Marathons have grown 
 in popularity, meaning the number of marathoners has dramatically grown. With this increase
@@ -36,18 +36,19 @@ runners through the years. Does that mean there are more "strong" amatuer
 runners? Maybe, maybe not. If the trend we observe here is driven by the slowest
 of the "strong" amatuers, I think we would all feel a bit more uneasy concluding that
 the number of "strong" amatuers is increasing. To dig into this inquiry, let's look at
- how the distribution of runners finishing between 2.5 and 3 hours has evolved over 
+how the distribution of runners finishing between 2.5 and 3 hours has evolved over 
 time and how the average finish time within this interval has changed. If "strong"
 amatuers are getting slower I think we will feel less comfortable concluding
 the number of "strong" amatuers has increased.
 """
 
 fast_analysis = """
-##### Are there really fewer "strong" amateurs?
+### Are there really fewer "strong" amateurs?
 
-The obvious conclusion here is there is no obvious conclusion. For the Chicago marathon,
+The obvious conclusion here is there is no obvious conclusion. For the Chicago Marathon,
 both "strong" male and female amateur runners marginally slowed over this time period. For Grandma's marathon,
-both "strong" male and female amateur runners marginally sped up over this time period. 
+both "strong" male and female amateur runners marginally sped up over this time period. In the Houston marathon,
+average finish times for both "strong" male and female amateurs barely changed over the time period.
 
 More importantly though, I want to draw your attention to a pitfall of the approach I've taken above.
 Runners finishing in the final histogram bar (the one that contains 3 hr finishers) holds large sway
@@ -60,7 +61,7 @@ to see how the trend changes. Instead I want to change the approach.
 Really what we care about is how the number of finishers in one histogram bar relative to the previous has changed. If
 all bars have an increasing number of finishers across time relative to the previous, then we can imagine there is a decreasing
 number of "strong" amateur runners. Below, I conduct this analysis and find little if any evidence that
-there is a decreasing number of "strong" amateur runners. The trend lines are weak at best, and evidence of a
+there is a decreasing number of "strong" amateur runners. The trend lines are weak at best, and evidence of a linear
 relationship between time and changes in the percent difference between adjacent subintervals is weak. 
 """
 
@@ -72,32 +73,25 @@ between 1995 and 2019 is subtracted from the percent difference in each year.
 """
 
 prop_analysis = """
-##### Are these results (or lack there of) generalizable?
-
-Now let's ensure there is no evidence for all races that there is a decreasing
-number of "strong" amatuer runners. The trendlines below and general lack of
-correlation between time and adjacent subinterval percent differences suggest that on
-average a race has not seen a decreasing number of "strong" amatuer runners. 
-As above, each point represent the percent difference between
-the number of finishers in two adjacent subintervals (histogram bars) for a given race. Additionally, 
-each point is demeaned, meaning the average percent difference between the number of finisher in two adjacent
-subintervals between 1995 and 2019 for a given race is subtracted from the percent difference in each year.
+### What do these results (or lack there of) mean?
 
 Given we do not find evidence to support the belief that there are fewer
-"strong" amatuers today than 25 years ago, it is unlikely that a reduction
-in "strong" amatuers in the field is a driving cause of the great slowing. 
+"strong" amatuers today than 25 years ago for our sample races, 
+it is unlikely that a reduction in "strong" amatuers in the field is 
+a driving cause of the great slowing. 
+
 To satiate the curiousity of the most curious or the most skeptical, 
 I'll demonstrate below that the slowing trend persists after dropping 
 all runners we've defined as "strong" amatuers from the sample.
 """
 
 still_slowing = """
-##### If we drop the "strong" amatuers is the average marathoner still slowing?
+### If we drop the "strong" amatuers is the average marathoner still slowing?
 
-After dropping all marathoners from the dataset finishing between 2.5 and 3 hours
-we see that the average marathoner has still slowed over the past 25 years. Thus, even
-if my analysis above is wrong and on average there are fewer "strong" amatuers, fewer "strong"
-amatuers is not the cause of the great slowing.
+Both male and female sub "strong" amatuers have slowed over the past 25 years much more than "strong" amatuers; 
+other runers are defined as runners finishing between 3 and 6.5 hours. This finding does not support the hypothesis
+that a decrease in fast runners is a driving cause of the great slowing of U.S. marathoners, at least
+for the population of marathoners between 25 and 35 years.
 """
 
 finish_distribution_testages_fast = pd.read_csv(
