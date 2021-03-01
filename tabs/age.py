@@ -36,7 +36,7 @@ Each point represents the demeaned mean finish time for 25-35 year old racers fo
 mean finish time is the mean finish time for a given race in a given year minus the mean finish time for a given race in all years.
 
 Moving forward, as we test more hypothesis, we will only use 25-35 year old marathoner results to control for the possibility
-that an aging marathoner population could be driving results. Clearly, the slowing trend persists for this chohort of
+that an aging marathoner population could be driving results. Clearly, the slowing trend persists for this cohort of
 marathoners. Consequently, more older folk running marathons cannot be pinned for dragging up average marathon finish times. The rest
 of the analysis will explore other potential drivers of the slowing trend just for 25-35 year old runners. 
 """
