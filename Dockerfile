@@ -9,5 +9,6 @@ RUN conda config --add channels conda-forge/label/dev && \
   conda env update -f /opt/conda/specs/environment.yml && \
   conda clean --all -f
 
-CMD ["python", "app.py"]
-
+# run app
+COPY . /changing-times
+CMD python /changing-times/app.py
