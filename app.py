@@ -19,7 +19,6 @@ import os
 
 
 app = dash.Dash(__name__, external_stylesheets = [])
-server = app.server
 port = int(os.environ.get("PORT", 5000))
 
 app.layout = html.Div(
