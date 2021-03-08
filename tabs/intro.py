@@ -1,3 +1,10 @@
+"""
+Intro tab contents:
+    * data
+    * writing
+    * layoung
+"""
+
 import utils.layout as layout
 import utils.timeseries as timeseries
 import utils.utils as utils
@@ -9,6 +16,7 @@ import pandas as pd
 import dash_core_components as dcc
 import dash_html_components as html
 
+# average finish time time series by gender for all runners demeaned by event
 finish_timeseries = pd.read_csv(constants.DATA_DIR + "/" + utils.get_filename(
     typep="finish_timeseries",
     contents="",

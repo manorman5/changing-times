@@ -1,3 +1,7 @@
+"""
+Main app file. Creates app and defines callbacks.
+"""
+
 import tabs.data as data
 import tabs.age as age
 import tabs.fast as fast
@@ -12,15 +16,19 @@ import utils.distribution as distribution
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
-import dash_bootstrap_components as dbc 
+from dash.dependencies import Input, Output
 
 import os
 
+####################################################################################
+# Create and define app attributes
+####################################################################################
 
+# create app and define port for running app on heroku with a dockerfile
 app = dash.Dash(__name__, external_stylesheets = [])
 port = int(os.environ.get("PORT", 5000))
 
+# define app layout
 app.layout = html.Div(
     className='app-body', 
     children=[
@@ -40,7 +48,12 @@ app.layout = html.Div(
     ]
 )
 
+##################################################################################
+# Define callbacks
+##################################################################################
 
+
+# callback for `More "slow" Marathoners?` tab
 @app.callback(
     [
         Output('slow-whole-time-dist','figure'),
@@ -102,6 +115,7 @@ def update_slow(gender, race, gender_prop, race_prop, gender_freq, race_freq):
     )
     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
+# callback for `Fewer "strong" Amatuers?` tab
 @app.callback(
     [
         Output('fast-whole-time-dist','figure'),
@@ -163,7 +177,7 @@ def update_fast(gender, race, gender_prop, race_prop, gender_freq, race_freq):
     return time_dist, time_timeseries, prop_timeseries, freq_timeseries
 
 
-
+# callback for `Aging Marathoners?` tab
 @app.callback(
     [
         Output('age-age-dist','figure'),
@@ -215,6 +229,8 @@ def update_age(age_gender, age_race, time_gender, time_race):
     )
     return age_dist, age_timeseries, time_dist, time_timeseries
 
+
+# callback for `The Data` tab
 @app.callback(
     [
         Output('map','figure'),

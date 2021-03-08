@@ -1,5 +1,10 @@
-#TODO: hovertext on double double timeseries should be event names
-
+"""
+`Fewer "strong" amatuers?` contents:
+    * writing
+    * data
+    * layout
+"""
+ 
 import utils.utils as utils
 import utils.layout as layout
 import utils.timeseries as timeseries
@@ -10,6 +15,11 @@ import dash_core_components as dcc
 
 import numpy as np
 import pandas as pd
+
+
+##################################################################################################
+# Tab writing - analysis and description
+##################################################################################################
 
 intro = """
 ##### Has a decreasing number of "strong" amateur runners caused the great slowing?
@@ -94,6 +104,11 @@ that a decrease in fast runners is a driving cause of the great slowing of U.S. 
 for the population of marathoners between 25 and 35 years.
 """
 
+#################################################################################
+# Tab data
+#################################################################################
+
+# finish time distribution for 25-35 year olds who finished faster than 2.5 hours
 finish_distribution_testages_fast = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="finishtime_distribution",
@@ -104,6 +119,7 @@ finish_distribution_testages_fast = pd.read_csv(
     )
 )
 
+# finish time average time series for 25-35 year olds who finished faster than 2.5 hours
 finish_timeseries_testages_fast = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="finish_timeseries",
@@ -114,6 +130,7 @@ finish_timeseries_testages_fast = pd.read_csv(
     )
 )
 
+# finish time average time series for 25-35 year olds who finished slower than 3 hours
 finish_timeseries_testages_notfast = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="finish_timeseries",
@@ -124,6 +141,8 @@ finish_timeseries_testages_notfast = pd.read_csv(
     )
 )
 
+# percent differences between adjacent number of finishers in adjacent bins 
+# for 25-35 year olds who finished faster than 2.5 hours
 proportion_timeseries_testages_fast = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="proportion_timeseries",
@@ -134,6 +153,7 @@ proportion_timeseries_testages_fast = pd.read_csv(
     )
 )
 
+# number of finishers for 25-35 year olds who finished faster than 2.5 hours 
 runnerfreq_timeseries_testages_fast = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="runner_freq_timeseries",
@@ -143,6 +163,10 @@ runnerfreq_timeseries_testages_fast = pd.read_csv(
         speed="fast"
     )
 )
+
+#################################################################################
+# Tab layout
+#################################################################################
 
 class Layout(layout.Layout):
     def get(self):

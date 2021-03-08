@@ -1,3 +1,11 @@
+"""
+`The Data` contents:
+    * data
+    * writing
+    * layout
+Plus helper functions.
+"""
+
 import constants
 import utils.utils as utils
 
@@ -12,6 +20,11 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
+##################################################################################
+# Tab Data, Writing, and layout
+##################################################################################
+
+# geographic distribution of the number of runners throughout time 
 geo_dist = pd.read_csv(constants.DATA_DIR + "/" + utils.get_filename(
     typep="geographic_distribution",
     contents="",
@@ -20,6 +33,7 @@ geo_dist = pd.read_csv(constants.DATA_DIR + "/" + utils.get_filename(
     speed=""
 ))
 
+# crosswalk between state and region
 region_state_cw = geo_dist[["postal","region","state"]].drop_duplicates()
 
 data_about = """#### Explore Where the Runners Ran
@@ -81,12 +95,50 @@ def layout(yearmin, yearmax):
         ]
     )
 
+###########################################################################################
+# Helper Functions
+###########################################################################################
+
 def filter_data(years, genders):
+    """
+    Filter geographic runner distribution data by list
+    of years and genders
+
+    Parameters:
+    -----------
+    years : list of int
+        list of selected years
+    genders : list of str
+        list of selected genders
+
+    Returns:
+    --------
+    :class:`pandas.DataFrame`
+        Geographic distribution of runners data filtered
+    """
     return geo_dist[
         geo_dist.year.isin(years) & geo_dist.gender.isin(genders)
-    ][["state","region","postal","event_name","lat","lon","freq"]].groupby(["state","postal","region","lat","lon","event_name"]).sum().reset_index()   
+    ][
+        ["state","region","postal","event_name","lat","lon","freq"]
+    ].groupby(
+        ["state","postal","region","lat","lon","event_name"]
+    ).sum().reset_index()   
 
 def create_map(plot_dt):
+    """
+    Create map depicting geographic distribution of 
+    runners
+
+    Parameters:
+    -----------
+    plot_dt : :class:`pandas.DataFrame`
+        geographic distribution of runners data. Must include
+        a `region` and `state` variable.
+
+    Returns:
+    --------
+    :class:`plotly.graph_objects.Figure`
+    """
     fig = go.Figure()
     for region in region_state_cw.region.drop_duplicates():
         pdt = region_state_cw[
@@ -141,6 +193,20 @@ def create_map(plot_dt):
     return fig
 
 def create_geo_sunburst(plot_dt):
+    """
+    Create sunburst plot depicting geographic distribution of 
+    runners
+
+    Parameters:
+    -----------
+    plot_dt : :class:`pandas.DataFrame`
+        geographic distribution of runners data. Must include
+        a `region` and `state` variable.
+
+    Returns:
+    --------
+    :class:`plotly.graph_objects.Figure`
+    """
     regions = plot_dt.groupby("region").sum()[["freq"]].reset_index()
     states = plot_dt.groupby(["region","state"]).sum()[["freq"]].reset_index()
     

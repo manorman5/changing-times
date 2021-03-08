@@ -1,3 +1,9 @@
+"""
+`Aging Marathoners?` contents:
+    * writing
+    * data
+    * layout
+"""
 import constants
 import utils.utils as utils
 import utils.timeseries as timeseries
@@ -6,6 +12,11 @@ import utils.layout as layout
 import pandas as pd
 
 import dash_core_components as dcc
+
+
+##################################################################################################
+# Tab writing - analysis and description
+##################################################################################################
 
 intro = """
 ##### Is an aging marathon population causing the great slowing? 
@@ -41,6 +52,11 @@ marathoners. Consequently, more older folk running marathons cannot be pinned fo
 of the analysis will explore other potential drivers of the slowing trend just for 25-35 year old runners. 
 """
 
+#################################################################################
+# Tab data
+#################################################################################
+
+# finish time distribution for 25-35 year olds
 finish_distribution_testages = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="finishtime_distribution",
@@ -51,6 +67,7 @@ finish_distribution_testages = pd.read_csv(
     )
 )
 
+# age distribution 
 age_distribution = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="age_distribution",
@@ -61,6 +78,7 @@ age_distribution = pd.read_csv(
     )
 )
 
+# average age timeseries
 age_timeseries = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="age_timeseries",
@@ -71,6 +89,7 @@ age_timeseries = pd.read_csv(
     )
 )
 
+# average finish time timeseries for runners between 25 and 35
 finish_timeseries_testages = pd.read_csv(
     constants.DATA_DIR + "/" + utils.get_filename(
         typep="finish_timeseries",
@@ -80,6 +99,10 @@ finish_timeseries_testages = pd.read_csv(
         speed=""
     )
 )
+
+#################################################################################
+# Tab layout
+#################################################################################
 
 class Layout(layout.Layout):
     def get(self):
